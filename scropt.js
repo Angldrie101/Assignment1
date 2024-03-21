@@ -26,14 +26,22 @@ function fetchWeatherData(city) {
             const temperature = data.main.temp;
             const temperatureCelsius = temperature - 273.15; 
             const humidity = data.main.humidity;
+            const cityNameUpperCase = city.toUpperCase();
 
             let weatherImageSrc;
             if (weatherDescription.includes('clouds')) {
-                weatherImageSrc = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrRqLOxxkuTO18QKCUGSq_milvyxdB9PoYpA&usqp=CAU';
-            } else if (weatherDescription.includes('rains')) {
-                weatherImageSrc = 'https://cdn-icons-png.freepik.com/512/4958/4958619.png';
-            } else {
-                weatherImageSrc = 'https://cdn-icons-png.flaticon.com/512/6198/6198743.png';
+                weatherImageSrc = 'https://cdn.dribbble.com/users/1136124/screenshots/4425752/icn_weather.gif';
+            } else if (weatherDescription.includes('rain')) {
+                weatherImageSrc = 'https://i.pinimg.com/originals/63/3f/a0/633fa082a594711f249a579fee4207d9.gif';
+            } else if (weatherDescription.includes('mist')){
+                weatherImageSrc = 'https://i.pinimg.com/originals/e9/cf/a7/e9cfa71f02ff8e3504410e831d883cd7.gif';
+            } else if (weatherDescription.includes('sunny')){
+                weatherImageSrc = 'https://mir-s3-cdn-cf.behance.net/project_modules/disp/8f342f30971807.563b2b138deaa.gif';
+            } else if (weatherDescription.includes('clear')){
+                weatherImageSrc = 'https://i.pinimg.com/originals/e9/cf/a7/e9cfa71f02ff8e3504410e831d883cd7.gif';
+            }
+            else {
+                weatherImageSrc = 'https://i.pinimg.com/originals/e1/70/03/e17003d3a86823bea8a48e4ec03d33e9.gif'
             }
 
             const currentDate = new Date();
@@ -41,20 +49,31 @@ function fetchWeatherData(city) {
             const formattedTime = currentDate.toLocaleTimeString();
 
             const weatherHTML = `
-                <h2>Weather in ${city}</h2>
+            <div class="weather-container">
                 <img src="${weatherImageSrc}" alt="${weatherDescription}" class="weather-image">
-                <h1>${formattedDate}</h1>
-                <p>Time: ${formattedTime}</p>
-                <p>Description: ${weatherDescription}</p>
-                <p>Temperature: ${temperatureCelsius.toFixed(0)}°C</p>
-                <p>Humidity: ${humidity}%</p>
+            </div>
+                <div class="weather-info">
+                    <div class="details">
+                        <p class="temp">${temperatureCelsius.toFixed(0)}°C</p>
+                    </div>
+                    <div class="des">
+                        <p>${weatherDescription}</p>
+                        <P>${cityNameUpperCase}</P>
+                    </div>
+                    <div class="date">
+                        <p>${humidity}%</p>
+                        <p><span id = "dat">${formattedDate}</span> | ${formattedTime}</p>
+                    </div>
+                </div>
+                    
+                </div>
             `;
 
             weatherInfo.innerHTML = weatherHTML;
         })
         .catch(error => {
             const weatherInfo = document.getElementById('weatherInfo');
-            weatherInfo.style.display = 'none';
+            weatherInfo.style.display = "none";
             alert(error.message);
             console.error('Error fetching weather data:', error);
         });

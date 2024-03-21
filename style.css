@@ -1,6 +1,7 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('https://t4.ftcdn.net/jpg/04/61/23/23/360_F_461232389_XCYvca9n9P437nm3FrCsEIapG4SrhufP.jpg');
+    background-image: url('https://img.pikbest.com/wp/202405/the-sun-shines-3d-rendered-shining-on-cartoon-clouds_9856676.jpg!sw800');
+    background-color: aliceblue;
     background-size:cover;
     margin-top: 100px;
     text-align: center;
@@ -43,14 +44,46 @@ button:hover {
     background-color: #77a6db;
 }
 
+.weather-container {
+    display: grid;
+    grid-template-columns: auto 150px; 
+}
+
+.weather-info {
+    display:flex;
+    align-items: center;
+}
+
+.temp {
+    font-size: 70px;
+    font-weight: bold;
+}
+.weather-image {
+    /*margin-left: auto; /* Push image to the right */
+    width: 745px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+.details {
+    text-align: left;
+}
+.des {
+    text-align: center;
+    margin-left: 150px;
+}
+
+.date {
+    text-align: right;
+    margin-left: 150px;
+}
+
+#dat {
+    font-weight: bold;
+}
 #weatherInfo {
     display: none;
     margin-top: 20px;
     margin-left: 27px;
 }
 
-.weather-image {
-    width: 150px;
-    height: 150px;
-    text-align: right;
-}
